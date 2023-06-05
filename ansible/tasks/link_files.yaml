@@ -9,6 +9,7 @@
     - { src: "~/.dotfiles/bashrc", dest: "~/.bashrc"}
     - { src: "~/.dotfiles/gitconfig", dest: "~/.gitconfig"}
     - { src: "~/.dotfiles/vimrc", dest: "~/.vimrc"}
+    - { src: "~/.dotfiles/starship.toml", dest: "~/.config/starship.toml"}
 
 # - name: link dotfiles for macOS
 #   when: ansible_os_family == "Darwin"

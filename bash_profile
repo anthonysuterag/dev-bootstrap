@@ -29,3 +29,6 @@ eval "$(pyenv virtualenv-init -)"
 
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"
+
+# Starship
+eval "$(starship init bash)"
