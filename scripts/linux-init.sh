@@ -70,7 +70,7 @@ fi
 
 # Run main playbook
 echo "[i] Run Playbook"
-ansible-playbook ./ansible/dotfiles-linux.yaml --ask-become-pass
+./.venv/bin/ansible-playbook ./ansible/dotfiles-linux.yaml --ask-become-pass
 
 echo "[i] From now on you can use $ dotfiles to manage your dotfiles"
 echo "[i] Done."
