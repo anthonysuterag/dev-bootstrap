@@ -16,7 +16,9 @@ fi
 if ! pyenv --version > /dev/null 2>&1; then
   echo "[i] installing pyenv"
   sudo apt-get update
-  sudo apt-get install curl -y 
+  sudo apt-get install -y build-essential curl zlib1g-dev make libssl-dev \
+    libbz2-dev libreadline-dev libsqlite3-dev wget llvm \
+    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
   curl https://pyenv.run | bash
 else
   echo "[i] pyenv is already installed, skipping installation"
