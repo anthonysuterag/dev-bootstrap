@@ -1,3 +1,14 @@
+# Source other bash files
+if [ -f ~/.bashrc_original ] ; then
+  . ~/.bashrc_original
+fi
+if [ -f ~/.bash_profile ] ; then
+  . ~/.bashrc
+fi
+if [ -f ~/.bashrc_local ] ; then
+  . ~/.bashrc_local
+fi
+
 export PATH=/usr/local/bin:$PATH
 
 # Direnv

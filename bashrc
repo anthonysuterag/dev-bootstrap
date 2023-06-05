@@ -1,14 +1,3 @@
-# Source other bash files
-if [ -f ~/.bashrc_original ] ; then
-  . ~/.bashrc_original
-fi
-if [ -f ~/.bash_profile ] ; then
-  . ~/.bash_profile
-fi
-if [ -f ~/.bashrc_local ] ; then
-  . ~/.bashrc_local
-fi
-
 # prompt
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
