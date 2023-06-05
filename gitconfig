@@ -1,0 +1,6 @@
+[core]
+	autocrlf = false
+  editor = vim
+[user]
+	email = anthony.sutera@woven-planet.global
+	name = anthony.sutera

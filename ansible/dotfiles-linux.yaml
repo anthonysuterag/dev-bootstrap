@@ -1,0 +1,69 @@
+# Playbook for managing Linux machine
+---
+- name: Playbook to manage Linux dotfiles
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: load custom vars
+      include_vars: ../vars/linux.yaml
+      tags:
+        - always
+
+    - name: Allow sudo without password
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        line: "{{ ansible_user_id }}	ALL=NOPASSWD: ALL"
+        insertafter:  '^%admin\tALL=\(ALL\) ALL'
+        validate: "visudo -cf %s"
+      become: yes
+    
+    - name: Install goenv
+      git:
+        repo: 'https://github.com/syndbg/goenv.git'
+        dest: ~/.goenv
+        version: "{{ goenv_version }}"
+
+    - name: Install tfenv
+      git:
+        repo: 'https://github.com/tfutils/tfenv.git'
+        dest: ~/.tfenv
+        version: "v{{ tfenv_version }}"
+
+    - include: tasks/link_files.yaml
+      tags:
+        - links
+
+    - name: Install apt packages
+      become: true
+      apt:
+        state: present
+        name: "{{ apt_packages }}"
+        update_cache: yes
+        cache_valid_time: 86400
+    
+    - name: Download starship
+      uri:
+        url: https://starship.rs/install.sh
+        return_content: yes
+      register: starship_installer
+
+    - name: Install starship
+      shell:
+        cmd: sh -s -- -y
+        stdin: "{{ starship_installer.content }}"
+
+    - include: tasks/ubuntu.yaml
+      when: ansible_os_family == "Debian"
+      tags:
+        - ubuntu
+
+- name: Install Roles
+  hosts: localhost
+  roles:
+    - role: geerlingguy.docker
+      become: true
+    - role: darkwizard242.virtualbox 
+      become: true
+      vars:
+        virtualbox_version: 6.1

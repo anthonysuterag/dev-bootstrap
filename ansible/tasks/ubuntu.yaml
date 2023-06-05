@@ -1,0 +1,80 @@
+---
+- name: Install some other packages
+  become: true
+  block:
+  - name: Create package directory
+    file:
+      path: "{{ package_dir }}"
+      state: directory
+      mode: 0775
+  - name: Install Nomad
+    unarchive:
+      src: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/nomad_{{ nomad_version }}_linux_amd64.zip"
+      dest: /usr/local/bin/
+      mode: '0755'
+      remote_src: yes
+  - name: Install Vagrant
+    block:
+      - name: Download Vagrant deb file
+        get_url:
+          url: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}-1_amd64.deb"
+          dest: "{{ package_dir }}/vagrant.deb"
+        register: vagrant_downloaded
+      - name: Install Vagrant
+        command: apt install {{ package_dir }}/vagrant.deb -y --allow-downgrades
+        when: vagrant_downloaded.changed
+  - name: Install Consul
+    unarchive:
+      src: "https://releases.hashicorp.com/consul/{{ consul_version }}/consul_{{ consul_version }}_linux_amd64.zip"
+      dest: /usr/local/bin/
+      mode: '0755'
+      remote_src: yes
+  - name: Install Packer
+    unarchive:
+      src: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
+      dest: /usr/local/bin/
+      mode: '0755'
+      remote_src: yes
+  - name: Install Vault
+    unarchive:
+      src: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_amd64.zip"
+      dest: /usr/local/bin/
+      mode: '0755'
+      remote_src: yes
+  - name: Install Concourse CLI (fly)
+    unarchive:
+      src: "https://github.com/concourse/concourse/releases/download/v{{ concourse_cli_version }}/fly-{{ concourse_cli_version }}-linux-amd64.tgz"
+      dest: /usr/local/bin/
+      mode: '0755'
+      remote_src: yes
+  - name: Install kubectl
+    unarchive:
+      src: "https://dl.k8s.io/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
+      dest: /usr/local/bin/
+      mode: '0755'
+      remote_src: yes
+  - name: Download AWS CLI
+    get_url:
+      url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+      dest: "{{ package_dir }}/awscliv2.zip"
+    register: aws_cli_downloaded
+  - name: Install AWS CLI
+    when: aws_cli_downloaded.changed
+    block:
+      - name: Clean aws dir
+        file:
+          path: "{{ package_dir }}/aws"
+          state: absent
+      - name: Unzip the AWS CLI
+        unarchive:
+          src: "{{ package_dir }}/awscliv2.zip"
+          dest: "{{ package_dir }}/"
+          remote_src: yes
+      - name: Run AWS CLI installation script
+        shell: sudo .{{ package_dir }}/aws/install
+  
+    
+
+# To install
+# - virtualbox
+# - timesync

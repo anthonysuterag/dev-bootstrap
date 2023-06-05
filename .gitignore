@@ -1,0 +1,9 @@
+/.idea
+/.venv
+/.envrc
+/.envrc.d/
+/.local/
+/ansible/*.retry
+/bin
+
+.vscode
