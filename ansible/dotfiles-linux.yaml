@@ -63,6 +63,9 @@
   roles:
     - role: geerlingguy.docker
       become: true
+      vars:
+        docker_users:
+          - "{{ ansible_user_id }}"
     - role: darkwizard242.virtualbox 
       become: true
       vars:

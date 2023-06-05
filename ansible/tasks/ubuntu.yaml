@@ -71,9 +71,3 @@
           remote_src: yes
       - name: Run AWS CLI installation script
         shell: .{{ package_dir }}/aws/install
-  
-    
-
-# To install
-# - virtualbox
-# - timesync
