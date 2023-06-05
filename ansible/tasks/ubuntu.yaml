@@ -70,4 +70,4 @@
           dest: "{{ package_dir }}/"
           remote_src: yes
       - name: Run AWS CLI installation script
-        shell: {{ package_dir }}/aws/install
+        shell: "{{ package_dir }}/aws/install"
