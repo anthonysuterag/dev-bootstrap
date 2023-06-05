@@ -12,6 +12,10 @@ if [[ $(uname -s) != "Linux" ]]; then
   exit 1
 fi
 
+# Exec pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 # Install pyenv
 if ! pyenv --version > /dev/null 2>&1; then
   echo "[i] installing pyenv"
@@ -24,9 +28,6 @@ else
   echo "[i] pyenv is already installed, skipping installation"
 fi
 
-# Exec pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
