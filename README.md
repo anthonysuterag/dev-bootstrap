@@ -7,7 +7,7 @@ For bootstrapping local development machines.
 * Linux
 
   ```
-  git clone https://github.com/nakabonne/dotfiles-ansible.git ~/.dotfiles
+  git clone https://github.com/anthonysuterag/dev-bootstrap.git ~/.dotfiles
   cd ~/.dotfiles
   ./scripts/linux-init.sh
   ```
