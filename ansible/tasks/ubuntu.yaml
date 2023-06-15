@@ -90,7 +90,7 @@
           remote_src: yes
       - name: Copy act executable
         copy:
-          src: {{ package_dir }}/act_Linux_x86_64/act
+          src: "{{ package_dir }}/act_Linux_x86_64/act"
           dest: /usr/local/bin/
           remote_src: yes
           mode: '0755'
