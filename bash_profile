@@ -32,3 +32,5 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 
 # Starship
 eval "$(starship init bash)"
+
+# Aliases

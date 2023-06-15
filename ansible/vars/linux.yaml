@@ -12,6 +12,7 @@ apt_packages:
   - vim
   - wget
 
+act_version: 0.2.46
 concourse_cli_version: 7.9.1
 consul_version: 1.15.3
 goenv_version: 2.0.7

@@ -71,3 +71,26 @@
           remote_src: yes
       - name: Run AWS CLI installation script
         shell: "{{ package_dir }}/aws/install"
+  - name: Download Act
+    get_url:
+      url: "https://github.com/nektos/act/releases/download/v{{ act_version }}/act_Linux_x86_64.tar.gz"
+      dest: "{{ package_dir }}/act_Linux_x86_64.tar.gz"
+    register: act_downloaded
+  - name: Install act
+    when: act_downloaded.changed
+    block:
+      - name: Clean act dir
+        file:
+          path: "{{ package_dir }}/act_Linux_x86_64"
+          state: absent
+      - name: Untar the act
+        unarchive:
+          src: "{{ package_dir }}/act_Linux_x86_64.tar.gz"
+          dest: "{{ package_dir }}/"
+          remote_src: yes
+      - name: Copy act executable
+        copy:
+          src: {{ package_dir }}/act_Linux_x86_64/act
+          dest: /usr/local/bin/
+          remote_src: yes
+          mode: '0755'
