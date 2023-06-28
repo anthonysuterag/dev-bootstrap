@@ -4,8 +4,8 @@ roles:
     version: 6.1.0
   - name: darkwizard242.virtualbox
     version: 2.3.0
-  - name: crivetimihai.virtualization
-    version: 1.0.33
 collections:
   - name: community.general
     version: 4.2.0
+  - name: crivetimihai.virtualization
+    version: 1.0.33
