@@ -72,3 +72,5 @@
         virtualbox_version: 6.1
     - role: crivetimihai.virtualization.lxd
       become: true
+      vars:
+        ansible_user: "{{ ansible_user_id }}"
