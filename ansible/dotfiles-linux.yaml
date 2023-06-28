@@ -70,3 +70,5 @@
       become: true
       vars:
         virtualbox_version: 6.1
+    - role: crivetimihai.virtualization.lxd
+      become: true
