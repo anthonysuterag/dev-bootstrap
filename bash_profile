@@ -51,6 +51,9 @@ if [ $ITERM_SESSION_ID ]; then
   addToPromptCommand 'echo -ne "\033];${PWD##*/}\007"'
 fi
 
+# save place for brew cask
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
 # Brew
 if [[ $(uname -s) == "Darwin" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
