@@ -34,6 +34,7 @@ case "$(uname -s)" in
         if [[ ! -x /usr/local/bin/pyenv ]]; then
           echo "[i] Install pyenv"
           brew install pyenv
+          brew install pyenv-virtualenv
         fi
 
         OS="darwin"
