@@ -13,7 +13,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 case "$(uname -s)" in
     Darwin)
-        eval "$(/opt/homebrew/bin/brew shellenv)" > /dev/null 2>&
+        eval "$(/opt/homebrew/bin/brew shellenv)"
         # Install gcc
         if [[ ! -x /usr/bin/gcc ]]; then
           echo "[i] Install macOS Command Line Tools"
