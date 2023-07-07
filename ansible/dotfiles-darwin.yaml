@@ -26,13 +26,13 @@
       tags:
         - links
 
-    - name: Install starship
-      shell:
-        cmd: sh -s -- -y
-        stdin: "{{ starship_installer.content }}"
-    
     - name: Download starship
       uri:
         url: https://starship.rs/install.sh
         return_content: yes
       register: starship_installer
+
+    - name: Install starship
+      shell:
+        cmd: sh -s -- -y
+        stdin: "{{ starship_installer.content }}"
