@@ -23,9 +23,11 @@ case "$(uname -s)" in
         if [[ ! -x /usr/local/bin/brew ]]; then
           echo "[i] Install Homebrew"
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew update
-          brew install openssl readline sqlite3 xz zlib
         fi
+
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        brew update
+        brew install openssl readline sqlite3 xz zlib
 
         # Install pyenv
         if [[ ! -x /usr/local/bin/pyenv ]]; then
