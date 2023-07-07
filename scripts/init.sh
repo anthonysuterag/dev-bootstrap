@@ -10,8 +10,9 @@ sudo -v
 # Environment variables
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+OS="$(uname -s)"
 
-case "$(uname -s)" in
+case "${OS}" in
     Darwin)
         # Install gcc
         if [[ ! -x /usr/bin/gcc ]]; then
@@ -113,7 +114,7 @@ fi
 
 # Run main playbook
 echo "[i] Run Playbook"
-./.venv/bin/ansible-playbook ./ansible/dotfiles.yaml --ask-become-pass
+./.venv/bin/ansible-playbook ./ansible/dotfiles-${OS}.yaml --ask-become-pass
 
 echo "[i] From now on you can use $ dotfiles to manage your dotfiles"
 echo "[i] Done."
