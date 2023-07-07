@@ -21,7 +21,7 @@ case "$(uname -s)" in
 
         eval "$(/opt/homebrew/bin/brew shellenv)"
         # Install homebrew
-        if [[ ! -x /usr/local/bin/brew ]]; then
+        if [[ ! -x /opt/homebrew/bin/brew ]]; then
           echo "[i] Install Homebrew"
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
