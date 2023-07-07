@@ -10,6 +10,7 @@ if [ -f ~/.bashrc_local ] ; then
 fi
 
 export PATH=/usr/local/bin:$PATH
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Direnv
 eval "$(direnv hook bash)"
