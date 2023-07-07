@@ -16,9 +16,10 @@
         update_homebrew: true
 
     - name: Install brew cask formulas
-      homebrew:
+      homebrew_cask:
         name: "{{ brew_cask_formulas }}"
         state: present
+        accept_external_apps: true
         update_homebrew: true
     
     - include: tasks/link_files.yaml
