@@ -22,5 +22,7 @@
       "path": "pwsh",
       "icon": "terminal-powershell"
     }
-  }
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.defaultProfile.osx": "bash"
 }

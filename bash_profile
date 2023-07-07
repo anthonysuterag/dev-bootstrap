@@ -10,7 +10,6 @@ if [ -f ~/.bashrc_local ] ; then
 fi
 
 export PATH=/usr/local/bin:$PATH
-export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Direnv
 eval "$(direnv hook bash)"
@@ -36,6 +35,21 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 
 # Starship
 eval "$(starship init bash)"
+
+# To be hidden the message which warns that the default shell is zsh.
+# See more: https://support.apple.com/ja-jp/HT208050
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Add command to PROMPT_COMMAND (runs before each command)
+# Makes sure ithe command is not already in PROMPT_COMMAND
+addToPromptCommand() {
+  export PROMPT_COMMAND="$1; $PROMPT_COMMAND";
+}
+
+# Set iTerm tab title to show current directory
+if [ $ITERM_SESSION_ID ]; then
+  addToPromptCommand 'echo -ne "\033];${PWD##*/}\007"'
+fi
 
 # Brew
 if [[ $(uname -s) == "Darwin" ]]; then
