@@ -1,7 +1,16 @@
 # Playbook for managing Linux machine
 ---
-- name: Playbook to manage Linux dotfiles
+- name: Link dotfiles
   hosts: localhost
+  connection: local
+  tasks:
+    - include: tasks/link_files.yaml
+      tags:
+        - links
+
+- name: Run dotfiles playbook for Ubuntu
+  hosts: localhost
+  when: ansible_distribution == "Ubuntu"
   connection: local
   tasks:
     - name: load custom vars
@@ -30,10 +39,6 @@
         dest: ~/.tfenv
         version: "v{{ tfenv_version }}"
 
-    - include: tasks/link_files.yaml
-      tags:
-        - links
-
     - name: Install apt packages
       become: true
       apt:
@@ -41,7 +46,16 @@
         name: "{{ apt_packages }}"
         update_cache: yes
         cache_valid_time: 86400
-    
+
+    - include: tasks/ubuntu.yaml
+      when: ansible_os_family == "Debian"
+      tags:
+        - ubuntu
+
+- name: Install starship
+  hosts: localhost
+  connection: local
+  tasks:
     - name: Download starship
       uri:
         url: https://starship.rs/install.sh
@@ -53,13 +67,9 @@
         cmd: sh -s -- -y
         stdin: "{{ starship_installer.content }}"
 
-    - include: tasks/ubuntu.yaml
-      when: ansible_os_family == "Debian"
-      tags:
-        - ubuntu
-
 - name: Install Roles
   hosts: localhost
+  when: ansible_distribution == "Ubuntu"
   roles:
     - role: geerlingguy.docker
       become: true

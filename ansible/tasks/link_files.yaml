@@ -11,11 +11,11 @@
     - { src: "~/.dotfiles/vimrc", dest: "~/.vimrc"}
     - { src: "~/.dotfiles/starship.toml", dest: "~/.config/starship.toml"}
 
-# - name: link dotfiles for macOS
-#   when: ansible_os_family == "Darwin"
-#   file:
-#     src: "{{ item.src }}"
-#     dest: "{{ item.dest }}"
-#     state: link
-#   loop:
-#     - { src: "~/.dotfiles/vscode.json", dest: "~/Library/Application Support/Code/User/settings.json" }
+- name: link dotfiles for macOS
+  when: ansible_os_family == "Darwin"
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "~/.dotfiles/vscode.json", dest: "~/Library/Application Support/Code/User/settings.json" }
