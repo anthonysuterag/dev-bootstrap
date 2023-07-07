@@ -1,0 +1,28 @@
+brew_formulas:
+  - awscli
+  - bash-completion
+  - ca-certificates
+  - coreutils
+  - direnv
+  - docker
+  - docker-compose
+  - goenv
+  - gomplate
+  - helm
+  - jq
+  - kubernetes-cli
+  - kustomize
+  - telnet
+  - tfenv
+  - tree
+  - watch
+  - wget
+  - yj
+  - yq
+
+brew_cask_formulas:
+  - iterm2
+  - postman
+  - spotify
+  - sublime-text
+  - visual-studio-code

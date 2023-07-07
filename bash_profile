@@ -27,10 +27,19 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
+# kubectl
+source <(kubectl completion bash)
+
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"
 
 # Starship
 eval "$(starship init bash)"
 
+# Brew
+if [[ $(uname -s) == "Darwin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # Aliases
+alias k='kubectl'

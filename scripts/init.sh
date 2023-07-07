@@ -13,6 +13,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 case "$(uname -s)" in
     Darwin)
+        eval "$(/opt/homebrew/bin/brew shellenv)" > /dev/null 2>&
         # Install gcc
         if [[ ! -x /usr/bin/gcc ]]; then
           echo "[i] Install macOS Command Line Tools"
@@ -104,23 +105,23 @@ else
 fi
 
 ./.venv/bin/ansible --version
-# ./.venv/bin/ansible-galaxy install -r requirements.yaml
+./.venv/bin/ansible-galaxy install -r requirements.yaml
 
-# if [ -f "$HOME/.bashrc" ] && [ ! -h "$HOME/.bashrc" ]
-# then
-#     echo "[i] Move current ~/.bashrc to ~/.bashrc_original"
-#     mv "$HOME/.bashrc" "$HOME/.bashrc_original"
-# fi
+if [ -f "$HOME/.bashrc" ] && [ ! -h "$HOME/.bashrc" ]
+then
+    echo "[i] Move current ~/.bashrc to ~/.bashrc_original"
+    mv "$HOME/.bashrc" "$HOME/.bashrc_original"
+fi
 
-# if [ -f "$HOME/.bash_profile" ] && [ ! -h "$HOME/.bash_profile" ]
-# then
-#     echo "[i] Move current ~/.bash_profile to ~/.bash_profile_original"
-#     mv "$HOME/.bash_profile" "$HOME/.bash_profile_original"
-# fi
+if [ -f "$HOME/.bash_profile" ] && [ ! -h "$HOME/.bash_profile" ]
+then
+    echo "[i] Move current ~/.bash_profile to ~/.bash_profile_original"
+    mv "$HOME/.bash_profile" "$HOME/.bash_profile_original"
+fi
 
-# # Run main playbook
-# echo "[i] Run Playbook"
-# ./.venv/bin/ansible-playbook ./ansible/dotfiles-${OS}.yaml --ask-become-pass
+# Run main playbook
+echo "[i] Run Playbook"
+./.venv/bin/ansible-playbook ./ansible/dotfiles-${OS}.yaml --ask-become-pass
 
-# echo "[i] From now on you can use $ dotfiles to manage your dotfiles"
-# echo "[i] Done."
+echo "[i] From now on you can use $ dotfiles to manage your dotfiles"
+echo "[i] Done."
