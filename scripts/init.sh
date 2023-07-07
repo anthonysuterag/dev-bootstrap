@@ -10,9 +10,8 @@ sudo -v
 # Environment variables
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-OS="$(uname -s)"
 
-case "${OS}" in
+case "$(uname -s)" in
     Darwin)
         # Install gcc
         if [[ ! -x /usr/bin/gcc ]]; then
@@ -32,6 +31,8 @@ case "${OS}" in
           echo "[i] Install pyenv"
           brew install pyenv
         fi
+
+        OS="darwin"
         ;;
 
     Linux)
@@ -52,6 +53,8 @@ case "${OS}" in
                         else
                           echo "[i] pyenv is already installed, skipping installation"
                         fi
+
+                        OS="ubuntu"
                         ;;
                     *)
                         echo "[!] Unsupported Linux Distribution: $ID"
