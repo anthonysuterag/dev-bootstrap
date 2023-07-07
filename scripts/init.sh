@@ -54,7 +54,7 @@ case "$(uname -s)" in
                           echo "[i] pyenv is already installed, skipping installation"
                         fi
 
-                        OS="ubuntu"
+                        OS="linux"
                         ;;
                     *)
                         echo "[!] Unsupported Linux Distribution: $ID"
