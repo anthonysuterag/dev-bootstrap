@@ -11,6 +11,10 @@ fi
 
 export PATH=/usr/local/bin:$PATH
 
+if [[ $(uname -s) == "Darwin" ]]; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
+
 # Direnv
 eval "$(direnv hook bash)"
 
