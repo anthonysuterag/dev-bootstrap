@@ -23,6 +23,7 @@ brew_formulas:
 brew_cask_formulas:
   - iterm2
   - postman
+  - session-manager-plugin
   - spotify
   - sublime-text
   - visual-studio-code
