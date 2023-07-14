@@ -13,7 +13,7 @@ apt_packages:
   - wget
 
 act_version: 0.2.46
-concourse_cli_version: 7.9.1
+concourse_cli_version: 7.8.3
 consul_version: 1.15.3
 goenv_version: 2.0.7
 kubectl_version: 1.27.2
