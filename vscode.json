@@ -2,6 +2,7 @@
   "files.associations": {
     "*.nomad": "hcl"
   },
+  "files.eol": "\n",
   "terminal.integrated.profiles.linux": {
     "bash": {
       "path": "bash",
