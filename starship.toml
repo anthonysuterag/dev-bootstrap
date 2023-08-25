@@ -8,7 +8,7 @@ symbol = "ᚠ "
 disabled = true
 
 [kubernetes]
-format = '[⚓ $context](blue) '
+format = '[⚓ $context](bright-blue) '
 disabled = false
 
 [time]
